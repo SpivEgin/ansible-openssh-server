@@ -1,0 +1,8 @@
+---
+- name: restart sshd
+  service: name=sshd state=restarted
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: restart sshd
+  service: name=ssh state=restarted
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'

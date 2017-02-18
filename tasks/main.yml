@@ -1,0 +1,26 @@
+---
+- name: install openssh-server
+  package:  name=openssh-server state=latest
+
+- name: enable openssh-server service
+  service: name=sshd enabled=yes
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: enable openssh-server service
+  service: name=ssh enabled=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: disallow root access
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^PermitRootLogin" line="PermitRootLogin no" state=present
+  notify:
+    - restart sshd
+
+- name: disallow password authentication
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
+  notify:
+    - restart sshd
+
+- name: disallow GSS API authentication
+  lineinfile: dest=/etc/ssh/sshd_config regexp="^GSSAPIAuthentication" line="GSSAPIAuthentication no" state=present
+  notify:
+    - restart sshd
