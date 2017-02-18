@@ -3,7 +3,7 @@ ansible-openssh-server
 
 This role manage openssh-server
 
-[![Ansible Galaxy](https://img.shields.io/ansible/role/xxxx.svg)](https://galaxy.ansible.com/salamachinas/openssh-server/)
+[![Ansible Galaxy](https://img.shields.io/ansible/role/15702.svg)](https://galaxy.ansible.com/salamachinas/openssh-server/)
 
 Requirements
 ------------
